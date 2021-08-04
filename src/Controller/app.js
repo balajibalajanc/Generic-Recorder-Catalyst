@@ -18,7 +18,6 @@ app.get("/recorder_test",(request,response)=>{
     Device_Index_Util((error,result)=>{
         if (error)
         {  return console.log('Error ' + error); }   
-        
         //logger
         console.log('Index in device_index function : '+result)    
         console.log('Index sent to recorder and calling the recorder function');
