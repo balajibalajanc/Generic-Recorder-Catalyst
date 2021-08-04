@@ -1,10 +1,11 @@
 import pyaudio
 import wave
+import sys
 
 CHUNK = 1024
 FORMAT = pyaudio.paInt16
 CHANNELS = 2
-DEVICE_INDEX=2
+DEVICE_INDEX=int(sys.argv[1])
 RATE = 44100
 RECORD_SECONDS = 10
 WAVE_OUTPUT_FILENAME = "target\\output.wav"
