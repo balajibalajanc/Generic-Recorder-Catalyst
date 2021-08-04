@@ -16,9 +16,6 @@ GCR is an application to record the system sound, regardless of the application,
 - **TRACK REPORTING**
  Keep track of your action items and meeting notes in one place.
 
-Markdown is a lightweight markup language based on the formatting conventions
-that people naturally use in email.
-As [John Gruber] writes on the [Markdown site][df1]
 
 ## License
 
