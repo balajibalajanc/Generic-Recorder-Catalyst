@@ -1,50 +1,208 @@
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <script type = "text/javascript">
 
-           function WriteCookie() {
-               if( document.myform.customer.value == "" ) {
-                  alert("Enter some value!");
-                  return;
-               }
-               cookievalue = escape(document.myform.customer.value) + ";";
-               document.cookie = "name=" + cookievalue;
-               console.log ("Setting Cookies : " + "name=" + cookievalue );
-            }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-            function ReadCookie() {
-               var allcookies = document.cookie;
-               console.log("All Cookies : " + allcookies );
-               
-               // Get all the cookies pairs in an array
-               cookiearray = allcookies.split(';');
-               
-               // Now take key value pair out of this array
-               for(var i=0; i<cookiearray.length; i++) {
-                  name = cookiearray[i].split('=')[0];
-                  value = cookiearray[i].split('=')[1];
-                  console.log ("Key is : " + name + " and Value is : " + value);
-               }
-            }
+    <title>Generic Recorder Catalyst</title>
 
-     </script>      
-<title>Dynamically Change Form Action Using Javascript</title>
-<!-- Include jQuery Library and File Here -->
-<link rel="stylesheet" href="/js/styles.css">
-<script type = "text/javascript" src="js/index.js"></script>
-</head>
-<body>
-    <form name = "myform" action = "">    
-        Enter name: <input type = "text" name = "customer"/>
-        <input type = "button" value = "Set Cookie" onclick = "WriteCookie();"/>
-     </form>   
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-training-studio.css">
+    </head>
+    
+    <body>
+    
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+    
+    
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">Gen <em> Rec</em> Cat</a>
+						
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="index.html" class="active">Home</a></li>
+							<li class="scroll-to-section"><a href="#our-classes">Our Services</a></li>
+                            <li class="main-button"><a href="#our-classes">Try Now</a></li>
+                        </ul>        
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="main-banner" id="top">
+        <video autoplay muted loop id="bg-video">
+            <source src="assets/images/Video.mp4" type="video/mp4" />
+        </video>
+
+        <div class="video-overlay header-text">
+            <div class="caption">
+                <h6>----------Automatically visualize system sound----------</h6>
+                <h2>easy with  <em>GRC</em></h2>
+                <div class="main-button scroll-to-section">
+                    <a href="#our-classes">TRY   GRC</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
 
 
-     <form name = "myforms" action = "">
-        <p> click the following button and see the result:</p>
-        <input type = "button" value = "Get Cookie" onclick = "ReadCookie()"/>
-     </form>     
+	
+	 <!-- ***** Our Services ***** -->
+    <section class="section" id="our-classes">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="section-heading">
+                        <h2>Our <em>Services</em></h2>
+						<img src="assets/images/line-dec.png" alt="">
+                        <p>All in one platform!</p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="tabs">
+              <div class="col-lg-4">
+                <ul>
+                  <li><a href='#tabs-4'><img src="assets/images/Speaker icon.png" alt="">Real Time recorder</a></li>
+				  <li><a href='#tabs-2'><img src="assets/images/live.png" alt="">Live transcription</a></a></li>
+				  <li><a href='#tabs-3'><img src="assets/images/Upload a file.png" alt="">Upload a file</a></a></li>
+				  <li><a href='#tabs-1'><img src="assets/images/link.png" alt="">Paste Content Link</a></a></li>
+                </ul>
+              </div>
+              <div class="col-lg-8">
+                <section class='tabs-content'>
+                  <article id='tabs-4'>
+                    <img src="assets/images/Wide Test.PNG" alt="First Class">
+                    <h4>Real time Recorder</h4>
+                    <p>Record the system sound, regardless of the application, and get valuable information such as transcripts, tasks and questions and more.
+ </p>
+                    <div class="main-button">
+                        <a  href="RTR.html">Customize your recording</a>
+				
+                    </div>
+                  </article>
+				   <article id='tabs-2'>
+                    <img src="assets/images/Live-Transcribe.jpg" alt="Third Class">
+                    <h4>Live transcription</h4>
+                    <p>Ready to begin? ... Now get live transcripts of what is played in your system.</p>
+                    <div class="main-button">
+            
+					
+					<a>GO Live Now</a>
+                    </div>
+                  </article>
+                  <article id='tabs-3'>
+                    <img src="assets/images/File transfer.png" alt="Second Training">
+                    <h4>Upload A File</h4>
+                    <p>Upload your file to automatically transcribe it from speech to text and get all that you need!!</p>
+                    <div class="main-button">
+					 
+					<Form id ="myForm" name ="myForm"  action="/uploadSound" enctype="multipart/form-data" method="POST">
+					<Input  type="File" accept=".wav" id="myaudio" name="avatar"/><br><br>
+                        <a ><input type="submit" id="submitUpld_btn_now"  value="Upload a file"/></a>
+                    </div>
+					
+                  </article>
+				  
+				   <article id='tabs-1'>
+                    <img src="assets/images/urllink.jpg" alt="Second Training">
+                    <h4>Paste Content Link</h4>
+                    <p>Paste your audio or video content URL to get it transcripted the way you want.</p>
+                    <div class="main-button">
+					 
+					<Form>
+					<Input type="url" id="Url_link" name="TextBox" placeholder = "Paste Content URL"><br><br>
+                       <a ONCLICK="geturl();" id="paste_tran" >Transcribe Now</a></form>
+                    </div>
+					
+                  </article>
+                 
+					
+                </section>
+              </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Our Services End ***** -->
+    
 
-</body>
+    <!-- ***** Software you'll Love Start ***** -->
+    <section class="section" id="call-to-action">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="cta-content">
+                        <h2>Transcription <em> Software</em> You'll <em> Love</em>!</h2>
+                        <p>Convert your interviews, videos, audio notes, lectures, speeches, podcasts, meetings or really any  audio to text. Export your transcript as doc, txt and more.</p>
+                        <div class="main-button scroll-to-section">
+                            <a href="#our-classes">Try it Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Software you'll Love End ***** -->
+
+   
+   
+
+    <!-- ***** Why GRC? Starts ***** -->
+    
+	
+
+    <!-- jQuery -->
+    <script src="assets/js/jquery-2.1.0.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugins -->
+    <script src="assets/js/scrollreveal.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/imgfix.min.js"></script> 
+    <script src="assets/js/mixitup.js"></script> 
+    <script src="assets/js/accordions.js"></script>
+    
+    <!-- Global Init -->
+    <script src="assets/js/custom.js"></script>
+	<script src="assets/js/test.js"></script>
+
+  </body>
 </html>
