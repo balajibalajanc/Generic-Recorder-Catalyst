@@ -7,7 +7,7 @@ const port = process.env.PORT || 3001
 const path = require('path');
 const cron = require('node-cron');
 const multer = require('multer')
-
+const open=require('open')
 //services defined
 const public_dir_path = path.join(__dirname, '../../public');
 const Device_Index_Util = require('../Services/Device_Index_Service');
@@ -15,9 +15,9 @@ const Recorder_rtr = require('../Services/Recording_Service_Real_Time_Recorder')
 const transcript_service = require('../Services/Transcript_Service');
 const get_video_summary = require('../Services/Post_Video_Url_Service');
 const Device_Index_Util_both = require('../Services/Device_Index_both');
-const recorder_both = require('../Services/Recording__Service_Real_Time_Both');
+const recorder_both = require('../Services/Recording_Service_Real_Time_Both');
 const transcript_service_file = require('../Services/Transcripting_Uploaded_File');
-
+const mailing_proto=require('../Services/Mailing_Service');
 app.use(express.static(public_dir_path))
 const logger = require('loglevel')
 //root hosting
@@ -54,7 +54,10 @@ app.post('/uploadSound', upload.single('avatar'), function(req, response, next) 
         if (error_t) {
             return response.send('Error ' + error_t);
         }
-        response.redirect(302, result_t);
+        open( result_t, function (err) {
+            if ( err ) throw err;
+            response.send();    
+          });
     });
 })
 
@@ -66,20 +69,24 @@ app.get("/RTR", (request, response) => {
             if (error) {
                 return  response.send('Error ' + error);
             }
-            logger.info('Index for the stereo device is : ' + result)
+            console.log('Index for the stereo device is : ' + result)
             Recorder_rtr(result, (error_1, result_1) => {
                 if (error_1) {
                     return response.send(error_1);
                 }
 
-                logger.info('File created from the recorder function is: ' + result_1)
+                console.log('File created from the recorder function is: ' + result_1)
                 // return response.send(result_1);
                 transcript_service(result_1, (error_2, result_2) => {
                     if (error_2) {
                         return response.send(error_2);
                     }
-                    logger.info('Json response from the transcript function: ' + result_2)
+                    // console.log('Json response from the transcript function: ' + result_2)
                     response.send(result_2);
+                    if (request.query.search) {
+                        console.log("final _email",request.query.search)
+                        mailing_proto(request.query.search,result_2);
+                    }
                 });
 
             });
@@ -91,7 +98,7 @@ app.get("/RTR", (request, response) => {
 })
 
 //record microphone sound
-app.get("/RTR_mic", (req, response) => {
+app.get("/RTR_mic", (request, response) => {
     Device_Index_Util("External", (error, result) => {
         if (error) {
             return  response.send('Error ' + error);
@@ -109,6 +116,10 @@ app.get("/RTR_mic", (req, response) => {
                 }
                 logger.info('Json response from the transcript function: ' + result_2)
                 response.send(result_2);
+                if (request.query.search) {
+                    console.log("final _email",request.query.search)
+                    mailing_proto(request.query.search,result_2);
+                }
             });
         })
     })
@@ -116,7 +127,7 @@ app.get("/RTR_mic", (req, response) => {
 })
 
 //record both the system sound as well as microphone sound
-app.get("/RTR_both", (req, response) => {
+app.get("/RTR_both", (request, response) => {
     Device_Index_Util_both((error, result) => {
         if (error) {
             return response.send('Error ' + error);
@@ -133,6 +144,10 @@ app.get("/RTR_both", (req, response) => {
                 }
                 logger.info('Json response from the transcript function: ' + result_2)
                 response.send(result_2);
+                if (request.query.search) {
+                    console.log("final _email",request.query.search)
+                    mailing_proto(request.query.search,result_2);
+                }
             });
         })
     })
@@ -159,6 +174,10 @@ app.get("/RTR_Line", (request, response) => {
                 }
                 logger.info('Json response from the transcript function: ' + result_2)
                 response.send(result_2);
+                if (request.query.search) {
+                    console.log("final _email",request.query.search)
+                    mailing_proto(request.query.search,result_2);
+                }
             });
 
         });
