@@ -25,7 +25,6 @@ const get_message=(id,authToken,callback)=>
         "readOnly": true
       }),
   }, (err, response, body) => {
-      console.log(body);
       callback(undefined,body);
   });
 

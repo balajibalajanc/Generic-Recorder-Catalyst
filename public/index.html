@@ -106,9 +106,9 @@
               <div class="col-lg-8">
                 <section class='tabs-content'>
                   <article id='tabs-4'>
-                    <img src="assets/images/Wide Test.PNG" alt="First Class">
+                    <img src="assets/images/rtr.jpg" alt="Second Training">
                     <h4>Real time Recorder</h4>
-                    <p>Record the system sound, regardless of the application, and get valuable information such as transcripts, tasks and questions and more.
+                    <p>Record the system sound, regardless of the application, and get valuable information such as transcripts, tasks and questions and more.Choose your way of recording by selecting from the list of customizations.
  </p>
                     <div class="main-button">
                         <a  href="RTR.html">Customize your recording</a>
@@ -126,27 +126,28 @@
                     </div>
                   </article> -->
                   <article id='tabs-3'>
-                    <img src="assets/images/File transfer.png" alt="Second Training">
+                    <img src="assets/images/upload.png" alt="Second Training">
                     <h4>Upload A File</h4>
                     <p>Upload your file to automatically transcribe it from speech to text and get all that you need!!</p>
                     <div class="main-button">
 					 
 					<Form id ="myForm" name ="myForm"  action="/uploadSound" enctype="multipart/form-data" method="POST">
 					<Input  type="File" accept=".wav" id="myaudio" name="avatar"/><br><br>
-                        <a ><input type="submit" id="submitUpld_btn_now"  value="Upload a file"/></a>
+                        <input type="submit" onclick="load_dot()" id="submitUpld_btn_now"  value="Upload a file"/>
                     </div>
+                    
 					
                   </article>
 				  
 				   <article id='tabs-1'>
-                    <img src="assets/images/urllink.jpg" alt="Second Training">
+                   <img src="assets/images/url.png" alt="Second Training">
                     <h4>Paste Content Link</h4>
                     <p>Paste your audio or video content URL to get it transcripted the way you want.</p>
                     <div class="main-button">
 					 
 					<Form>
 					<Input type="url" id="Url_link" name="TextBox" placeholder = "Paste Content URL"><br><br>
-                       <a ONCLICK="geturl();" id="paste_tran" >Transcribe Now</a></form>
+                       <a ONCLICK="geturl()" id="paste_tran" >Transcribe Now</a></form>
                     </div>
 					
                   </article>
@@ -186,7 +187,7 @@
 	
 
     <!-- jQuery -->
-    <script src="assets/js/jquery-2.1.0.min.js"></script>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
 
     <!-- Bootstrap -->
     <script src="assets/js/popper.js"></script>

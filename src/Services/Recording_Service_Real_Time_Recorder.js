@@ -7,11 +7,11 @@ const FilePath = public_dir_path.replace(regex, "\\\\");
 const LOCATION=FilePath+'\\\\';
 
 
-const Recorder_service_rtr=(index,callback)=>{
+const Recorder_service_rtr=(index,device,callback)=>{
     let options={ mode: 'text',
     pythonOptions: ['-u'], // get print results in real-time
       scriptPath:LOCATION,
-        args:[index]
+        args:[index,device]
     }
     console.log("tester",index);
     PythonShell.run('Recorder_Real_Time_Recorder.py', options, function (err, result){

@@ -1,6 +1,19 @@
 const request = require('request');
 // const authToken = AUTH_TOKEN;
 // const webhookUrl = WEBHOOK_URL;
+const get_conversation=require('./Getting_conversation_message_service');
+
+
+// fucntion to authenticate and upload the audio file to the server
+function job_status(AUTH_TOKEN,JOB_ID){
+  request.get({
+                url: `https://api.symbl.ai/v1/job/${JOB_ID}`,
+                headers: { 'Authorization': `Bearer ${AUTH_TOKEN}` },
+                json: true
+               }, (err, response, body) => {
+    console.log("Job_status_",body);
+});
+}
 
 const post_vid=(url,callback)=>{
 
@@ -71,8 +84,22 @@ const post_vid=(url,callback)=>{
         callback(Error(responses[statusCode]),undefined)
       }
       console.log('Status code: ', statusCode);
-      console.log('Body', response.body);
-      callback(undefined,response.body)
+      console.log("Body",body);
+      const conv=JSON.parse(body);
+      console.log("conv",conv.conversationId); 
+      setTimeout(() => {
+        get_conversation(conv.conversationId,authToken,(error,result)=>{
+          if(error) {
+            return callback(error,undefined);
+          }
+          
+            //  const objectValue = JSON.parse(result);
+            //  console.log(objectValue.url);
+          return callback(undefined,result);
+          
+        })
+      }, 5*1000);
+
     });
   });
 

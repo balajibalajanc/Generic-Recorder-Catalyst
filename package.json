@@ -4,9 +4,9 @@
   "description": "",
   "main": "src/Controller/app.js",
   "scripts": {
-    "start": "node src/Controller/app.js",
+    "start": "env-cmd -f ./config/dev.env node src/Controller/app.js",
     "test": "python C:/Users/bbalasubraman/Documents/Nodejs/Udemy/play_exp/src/Utilities/Device_Index_Util.py",
-    "dev": "env-cmd -f ./config/dev.env nodemon src/Controller/app.js -e js,hbs,css,html",
+    "dev": "env-cmd -f ./config/dev.env nodemon src/Controller/app.js -e js,hbs,css,html,py",
     "tests": "env-cmd -f ./config/dev.env node  C:/Users/bbalasubraman/Documents/Nodejs/Udemy/play_exp/src/Services/Transcript_service.js"
   },
   "author": "",
@@ -19,7 +19,6 @@
     "multer": "^1.4.2",
     "node-cron": "^3.0.0",
     "nodemon": "^2.0.6",
-    "open": "^8.2.1",
     "python-shell": "^3.0.0",
     "request": "^2.88.2"
   }

@@ -7,22 +7,33 @@
 		  //window.location.href="../../Transcripting.html"
 			if(common_id !== undefined)
 			{
-				console.log(common_id);
-				fetch('/RTR?search='+encodeURIComponent(common_id)).then((response)=>{
-					response.json().then((data)=>{
+				$.ajax( {
+					type:"GET",
+					url:'/RTR?search='+encodeURIComponent(common_id),
+					dataType:"json",
+					beforeSend:function(){
+						$('#js-preloader').addClass('unloaded');
+					} ,
+					success:function(data) {
 						console.log(data.url);
-						window.open(data.url,'_blank');
-				})
-			})
+						window.location.href=data.url;
+					}
+				 });
 				
 			}
-		//   $('#js-preloader').addClass('loaded');	
-		 else{ fetch('/RTR').then((response)=>{
-			response.json().then((data)=>{
-				console.log(data.url);
-				window.open(data.url,'_blank');
-		})
-	})
+		 else{
+			$.ajax( {
+				type:"GET",
+				url:'/RTR',
+				dataType:"json",
+				beforeSend:function(){
+					$('#js-preloader').addClass('unloaded');
+				} ,
+				success:function(data) {
+					console.log(data.url);
+					window.location.href=data.url;
+				}
+			 });
 		 }
 })
 
@@ -33,20 +44,35 @@ submit_mic.addEventListener('click',()=>{
 	  //request
 	  if(common_id !== undefined)
 			{
-				fetch('/RTR_mic?search='+encodeURIComponent(common_id)).then((response)=>{
-					response.json().then((data)=>{
+				$.ajax( {
+					type:"GET",
+					url:'/RTR_mic?search='+encodeURIComponent(common_id),
+					dataType:"json",
+					beforeSend:function(){
+						$('#js-preloader').addClass('unloaded');
+					} ,
+					success:function(data) {
 						console.log(data.url);
-						window.open(data.url,'_blank');
-				})
-			})
+						window.location.href=data.url;
+					}
+				 });
+
 			}
 			else{
-	  fetch('/RTR_mic').then((response)=>{
-		response.json().then((data)=>{
-			console.log(data.url);
-			window.open(data.url,'_blank');
-	})
-})
+
+				$.ajax( {
+					type:"GET",
+					url:'/RTR_mic',
+					dataType:"json",
+					beforeSend:function(){
+						$('#js-preloader').addClass('unloaded');
+					} ,
+					success:function(data) {
+						console.log(data.url);
+						window.location.href=data.url;
+					}
+				 });
+
 			}
 })
 
@@ -58,21 +84,36 @@ submit_both_sound.addEventListener('click',()=>{
 
 	  if(common_id !== undefined)
 			{
-				fetch('/RTR_both?search='+encodeURIComponent(common_id)).then((response)=>{
-					console.log(response)
-				  response.json().then((data)=>{
-					  console.log(data.url);
-					  window.open(data.url,'_blank');
-			  })
-		  })
+
+				$.ajax( {
+					type:"GET",
+					url:'/RTR_both?search='+encodeURIComponent(common_id),
+					dataType:"json",
+					beforeSend:function(){
+						$('#js-preloader').addClass('unloaded');
+					} ,
+					success:function(data) {
+						console.log(data.url);
+						window.location.href=data.url;
+					}
+				 });
+
 			}
-			else{  fetch('/RTR_both').then((response)=>{
-				console.log(response)
-			  response.json().then((data)=>{
-				  console.log(data.url);
-				  window.open(data.url,'_blank');
-		  })
-	  })
+			else{ 
+				
+				$.ajax( {
+					type:"GET",
+					url:'/RTR_both',
+					dataType:"json",
+					beforeSend:function(){
+						$('#js-preloader').addClass('unloaded');
+					} ,
+					success:function(data) {
+						console.log(data.url);
+						window.location.href=data.url;
+					}
+				 });
+
 	}
 	
 })
@@ -84,32 +125,52 @@ submit_ind_app.addEventListener('click',()=>{
 	  //request
 	  //window.location.href="../../Transcripting.html"
 	  if(common_id !== undefined)
-	  {  fetch('/RTR_Line?search='+encodeURIComponent(common_id)).then((response)=>{
-		response.json().then((data)=>{
-			console.log(data.url);
-			window.open(data.url,'_blank');
-	})
-})
+	  {  
+		$.ajax( {
+					type:"GET",
+					url:'/RTR_Line?search='+encodeURIComponent(common_id),
+					dataType:"json",
+					beforeSend:function(){
+						$('#js-preloader').addClass('unloaded');
+					} ,
+					success:function(data) {
+						console.log(data.url);
+						window.location.href=data.url;
+					}
+				 });
 
 }
-	  else{  fetch('/RTR_Line').then((response)=>{
-		response.json().then((data)=>{
-			console.log(data.url);
-			window.open(data.url,'_blank');
-	})
-})
+	  else{  
+		$.ajax( {
+			type:"GET",
+			url:'/RTR_Line',
+			dataType:"json",
+			beforeSend:function(){
+				$('#js-preloader').addClass('unloaded');
+			} ,
+			success:function(data) {
+				console.log(data.url);
+				window.location.href=data.url;
+			}
+		 });
+
+
 }
 	//   $('#js-preloader').addClass('loaded');	
 	
 
 })
 
+function load_dot(){
+	$('#js-preloader').addClass('unloaded');
+}
+
 //paste_audio transcribe btn click
 
 function geturl()
 {
 	const url = document.getElementById("Url_link").value;
-	console.log(url);
+	console.log("Paste_url_link "+url);
 	fetch('/paste_url?search='+encodeURIComponent(url)).then((response)=>{
 		response.json().then((data)=>{
 			console.log(data.url);
@@ -119,11 +180,18 @@ function geturl()
 	})
 }
 
+
+
+
 function mailsubs()
 {
 	const mail_id = document.getElementById("mail_id").value;
 	common_id=mail_id
 	console.log(common_id);
+	document.getElementById("paste_tran").innerHTML = "Mail sent!";
+	setTimeout(() => {
+		document.getElementById("paste_tran").innerHTML = "Mail now";
+	}, 2000);
 	// fetch('/paste_url?search='+encodeURIComponent(url)).then((response)=>{
 	// 	response.json().then((data)=>{
 	// 		console.log(data.url);
@@ -207,10 +275,4 @@ function mailsubs()
 					console.log("Stop");
 				 }
 				
-				function geturl() 
-				{
-					
-					var url = document.getElementById("Url_link").value;
-					console.log(url);
-				}
 			

@@ -7,7 +7,6 @@ const port = process.env.PORT || 3001
 const path = require('path');
 const cron = require('node-cron');
 const multer = require('multer')
-const open=require('open')
 //services defined
 const public_dir_path = path.join(__dirname, '../../public');
 const Device_Index_Util = require('../Services/Device_Index_Service');
@@ -54,12 +53,13 @@ app.post('/uploadSound', upload.single('avatar'), function(req, response, next) 
         if (error_t) {
             return response.send('Error ' + error_t);
         }
-        open( result_t, function (err) {
-            if ( err ) throw err;
-            response.send();    
-          });
+        response.redirect(302,result_t);
     });
 })
+
+
+
+
 
 //record system sound
 app.get("/RTR", (request, response) => {
@@ -70,7 +70,7 @@ app.get("/RTR", (request, response) => {
                 return  response.send('Error ' + error);
             }
             console.log('Index for the stereo device is : ' + result)
-            Recorder_rtr(result, (error_1, result_1) => {
+            Recorder_rtr(result,"System_sound", (error_1, result_1) => {
                 if (error_1) {
                     return response.send(error_1);
                 }
@@ -104,7 +104,7 @@ app.get("/RTR_mic", (request, response) => {
             return  response.send('Error ' + error);
         }
         logger.info('Index for the stereo device is : ' + result)
-        Recorder_rtr(result, (error_1, result_1) => {
+        Recorder_rtr(result,"Microphone", (error_1, result_1) => {
             if (error_1) {
                 return response.send(error_1);
             }
@@ -160,8 +160,8 @@ app.get("/RTR_Line", (request, response) => {
         if (error) {
             return response.send('Error ' + error);
         }
-        logger.info('Index for the stereo device is : ' + result)
-        Recorder_rtr(result, (error_1, result_1) => {
+        console.log('Index for the LineS device is : ' + result)
+        Recorder_rtr(result,"Independent Application", (error_1, result_1) => {
 
             if (error_1) {
                 return response.send(error_1);
@@ -188,6 +188,7 @@ app.get("/RTR_Line", (request, response) => {
 //get the insights from the 
 app.get("/paste_url", (req, response) => {
     if (!req.query.search) {
+        console.log("No url provided");
         return res.send({
             error: 'Am i joke to you pleas give Address to search'
         });

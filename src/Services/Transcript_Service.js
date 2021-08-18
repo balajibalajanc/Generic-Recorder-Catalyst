@@ -7,16 +7,13 @@ const get_conversation=require('./Getting_conversation_message_service');
 
 // fucntion to authenticate and upload the audio file to the server
 function job_status(AUTH_TOKEN,JOB_ID){
-          const request = require('request');
-          const authToken = AUTH_TOKEN;
-          const jobId = JOB_ID;
 
           request.get({
-                        url: `https://api.symbl.ai/v1/job/${jobId}`,
-                        headers: { 'Authorization': `Bearer ${authToken}` },
+                        url: `https://api.symbl.ai/v1/job/${JOB_ID}`,
+                        headers: { 'Authorization': `Bearer ${AUTH_TOKEN}` },
                         json: true
                        }, (err, response, body) => {
-            console.log("Job_status_"+body);
+            console.log("Job_status_",JSON.parse(body));
 });
 }
 
@@ -86,6 +83,7 @@ request(authOptions, (err, res, body) => {
     
     audioFileStream.pipe(request.post(audioOption, (err, response, body) => {
       const statusCode = response.statusCode;
+      console.log('Status code: ', statusCode); 
       if (err || Object.keys(responses).indexOf(statusCode.toString()) !== -1) {
         throw new Error(responses[statusCode]);
       }
@@ -93,7 +91,7 @@ request(authOptions, (err, res, body) => {
       console.log('Body', body);
       var {conversationId} = body
       var {jobId}=body
-      job_status(accessToken,jobId);
+      //job_status(accessToken,jobId);
 
       
         setTimeout(() => {
