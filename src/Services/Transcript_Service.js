@@ -61,7 +61,7 @@ request(authOptions, (err, res, body) => {
       // 'channelMetadata': [{"channel": 1, "speaker": {"name": "Robert Bartheon", "email": "robertbartheon@gmail.com"}}],
       // ["<Optional, boolean| channel_metadata> |This object parameter contains two variables speaker and channel to specific which speaker corresponds to which channel. This object only works when enableSeparateRecognitionPerChannel query param is set to true."
     
-      // 'languageCode': "en-US"  // <Optional, boolean| language_code> |code of language of recording.
+      'languageCode': "en-IN"  // <Optional, boolean| language_code> |code of language of recording.
     }
     const audioOption = {
       url: 'https://api.symbl.ai/v1/process/audio',
