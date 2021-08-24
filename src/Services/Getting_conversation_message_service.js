@@ -1,5 +1,5 @@
 const request = require('request');
-
+const get_object_conversation=require('./test_get_message');
 
 
 const get_message=(id,authToken,callback)=>
@@ -25,7 +25,14 @@ const get_message=(id,authToken,callback)=>
         "readOnly": true
       }),
   }, (err, response, body) => {
-      callback(undefined,body);
+    const temp_bod=JSON.parse(body)
+    get_object_conversation(id,authToken,temp_bod.url,(error,result)=>{
+      if (error) {
+        return  callback(error,undefined);
+    }
+    callback(undefined,result);
+    })
+      
   });
 
     // let final_object={messages:null,actionItems:null,followUps:null,topics:null,questions:null};

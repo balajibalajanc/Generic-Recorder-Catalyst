@@ -3,7 +3,7 @@ const request = require('request');
 
 
 
-const get_max_details=(id,authToken) => {
+const get_max_details=(id,authToken,data_url,callback) => {
 let result = null;
 var final_object = {
     messages: null,
@@ -11,11 +11,11 @@ var final_object = {
     followUps: null,
     topics: null,
     questions: null,
-    sentiment__mess:null,
     messages_array:null,
     sent_a:null,
     analytics:null,
-    member_track_analysis:null
+    member_track_analysis:null,
+    url:data_url
 };
 let mess={}
 const url_messagesl = `https://api.symbl.ai/v1/conversations/${id}/messages?sentiment=true`
@@ -115,10 +115,6 @@ request.get({
                                 return value.sentiment.suggested
                             })
                             final_object.sent_a=sent
-                             body.messages.forEach(function(value,index) {
-                                mess[value.text]=sent[index]
-                            })
-                            final_object.sentiment__mess=mess
                             
                         }
 
@@ -149,7 +145,9 @@ request.get({
                             final_object.member_track_analysis={m_pace:m_pace,m_talktime:m_talktime,m_listentime:m_listentime}
                             final_object.analytics={x_met: x_met, y_met: y_met}
                             
-                            console.log(final_object);
+                           // console.log(final_object);
+                            const one_final_obj=JSON.stringify(final_object);
+                            callback(undefined,one_final_obj);
                         });
 
                     });
@@ -171,5 +169,5 @@ request.get({
 }
 
 const id_tk='6309078058926080'
-const accesstk='eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlFVUTRNemhDUVVWQk1rTkJNemszUTBNMlFVVTRRekkyUmpWQ056VTJRelUxUTBVeE5EZzFNUSJ9.eyJodHRwczovL3BsYXRmb3JtLnN5bWJsLmFpL3VzZXJJZCI6IjYwNjA3MTA4MjkyMjgwMzIiLCJpc3MiOiJodHRwczovL2RpcmVjdC1wbGF0Zm9ybS5hdXRoMC5jb20vIiwic3ViIjoiVmVQR0ozanlMM2s5TndwejJwZkswQnZBSEUyc0FrRHhAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vcGxhdGZvcm0ucmFtbWVyLmFpIiwiaWF0IjoxNjI5NDU3NTQyLCJleHAiOjE2Mjk1NDM5NDIsImF6cCI6IlZlUEdKM2p5TDNrOU53cHoycGZLMEJ2QUhFMnNBa0R4IiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.heKfIzQ2y15Pste13Gh5RAXz6thee2n1jnn41n3zXHyD3IulwNule7OC23HlOiMbOfhVIlJ0hN48GXeIm0LUfOjw3GW1mVKAhP92W-m-xe3wpQcVQXUNMFKCkyM8hfUezOhEIWucZu3bShB6x-CsG2yDBnDePQq3PnM5uBaaaHcF8sAapj2jTdOIvJOI1KRhVM7aUnDdn3RTJvlCrPv4fIlEk7oWmT8O5dvMqqsTcqj2zobsf5ShRQsjxFLyZVx-t261Wr4UIqxuniGxLbvr6eMsPhDfxN4HcQIlR3yz7XkAR7xfHOMf75fFYiSE5CXY8AoMzo74_lKWD4kO1YtDnw'
-get_max_details(id_tk,accesstk);
+const accesstk='eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlFVUTRNemhDUVVWQk1rTkJNemszUTBNMlFVVTRRekkyUmpWQ056VTJRelUxUTBVeE5EZzFNUSJ9.eyJodHRwczovL3BsYXRmb3JtLnN5bWJsLmFpL3VzZXJJZCI6IjYwNjA3MTA4MjkyMjgwMzIiLCJpc3MiOiJodHRwczovL2RpcmVjdC1wbGF0Zm9ybS5hdXRoMC5jb20vIiwic3ViIjoiVmVQR0ozanlMM2s5TndwejJwZkswQnZBSEUyc0FrRHhAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vcGxhdGZvcm0ucmFtbWVyLmFpIiwiaWF0IjoxNjI5NjkxMjA0LCJleHAiOjE2Mjk3Nzc2MDQsImF6cCI6IlZlUEdKM2p5TDNrOU53cHoycGZLMEJ2QUhFMnNBa0R4IiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.wFKZvYhbhv0USDYQl6T8bRO13WhUyMq4g0W6C-58bCgj-vMYnys2MtbW4kVRD83CLFRpL1GLbYyWvD32buMvG18ToLFzGZ9G25at3tnErVN3W3GTdszPGwFCmmncx_WPiz5sPU_DOeTY_uxpyRYe_JmKnyLJ78dNa6eoEQhXnbwPSphLp--kGjlCS0UBGNVG_LvnIOEBEYXt7AqhR82L-j1906MeKllYrXlbCufdZet71NMVmRaGvJd67iPkQEOmWybG5XqhvA1XAccWNApQd4bt4PDFMW9uKnhytYu09NCkEcQlhDENvQtBBgRpfQUUm4XjcE8cqHpNPX2vOYMslQ'
+module.exports=get_max_details;

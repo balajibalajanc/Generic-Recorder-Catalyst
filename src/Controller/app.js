@@ -64,6 +64,8 @@ app.post('/uploadSound', upload.single('avatar'), function(req, response, next) 
 //record system sound
 app.get("/RTR", (request, response) => {
     console.log('Recording started from the controller layer');
+    console.log('Language code seleted :',request.query.search);
+    var language_code=String(request.query.search);
     try {
         Device_Index_Util("Stereo", (error, result) => {
             if (error) {
@@ -77,16 +79,16 @@ app.get("/RTR", (request, response) => {
 
                 console.log('File created from the recorder function is: ' + result_1)
                 // return response.send(result_1);
-                transcript_service(result_1, (error_2, result_2) => {
+                transcript_service(result_1,language_code, (error_2, result_2) => {
                     if (error_2) {
                         return response.send(error_2);
                     }
-                    // console.log('Json response from the transcript function: ' + result_2)
+                    console.log('Json response from the transcript function: ' + result_2)
                     response.send(result_2);
-                    if (request.query.search) {
-                        console.log("final _email",request.query.search)
-                        mailing_proto(request.query.search,result_2);
-                    }
+                    // if (request.query.search) {
+                    //     console.log("final _email",request.query.search)
+                    //     mailing_proto(request.query.search,result_2);
+                    // }
                 });
 
             });
@@ -99,27 +101,30 @@ app.get("/RTR", (request, response) => {
 
 //record microphone sound
 app.get("/RTR_mic", (request, response) => {
+    console.log('Recording started from the controller layer');
+    console.log('Language code seleted :',request.query.search);
+    var language_code=String(request.query.search);
     Device_Index_Util("External", (error, result) => {
         if (error) {
             return  response.send('Error ' + error);
         }
-        logger.info('Index for the stereo device is : ' + result)
+        console.log('Index for the stereo device is : ' + result)
         Recorder_rtr(result,"Microphone", (error_1, result_1) => {
             if (error_1) {
                 return response.send(error_1);
             }
 
-            logger.info('File created from the recorder function is: ' + result_1)
-            transcript_service(result_1, (error_2, result_2) => {
+            console.log('File created from the recorder function is: ' + result_1)
+            transcript_service(result_1,language_code, (error_2, result_2) => {
                 if (error_2) {
                     return response.send('Error ' + error_2);
                 }
-                logger.info('Json response from the transcript function: ' + result_2)
+                console.log('Json response from the transcript function: ' + result_2)
                 response.send(result_2);
-                if (request.query.search) {
-                    console.log("final _email",request.query.search)
-                    mailing_proto(request.query.search,result_2);
-                }
+                // if (request.query.search) {
+                //     console.log("final _email",request.query.search)
+                //     mailing_proto(request.query.search,result_2);
+                // }
             });
         })
     })
@@ -128,26 +133,30 @@ app.get("/RTR_mic", (request, response) => {
 
 //record both the system sound as well as microphone sound
 app.get("/RTR_both", (request, response) => {
+    console.log('Recording started from the controller layer');
+    console.log('Language code seleted :',request.query.search);
+    var language_code=String(request.query.search);
+
     Device_Index_Util_both((error, result) => {
         if (error) {
             return response.send('Error ' + error);
         }
-        logger.info('Index for the stereo device is : ' + result)
+        console.log('Index for the stereo device is : ' + result)
         recorder_both(result[0], result[1], (error_1, result_1) => {
             if (error_1) {
                 return response.send(error_1);
             }
-            logger.info('File created from the recorder function is: ' + result_1)
-            transcript_service(result_1, (error_2, result_2) => {
+            console.log('File created from the recorder function is: ' + result_1)
+            transcript_service(result_1,language_code, (error_2, result_2) => {
                 if (error_2) {
                     return response.send('Error ' + error_2);
                 }
-                logger.info('Json response from the transcript function: ' + result_2)
+                console.log('Json response from the transcript function: ' + result_2)
                 response.send(result_2);
-                if (request.query.search) {
-                    console.log("final _email",request.query.search)
-                    mailing_proto(request.query.search,result_2);
-                }
+                // if (request.query.search) {
+                //     console.log("final _email",request.query.search)
+                //     mailing_proto(request.query.search,result_2);
+                // }
             });
         })
     })
@@ -156,6 +165,9 @@ app.get("/RTR_both", (request, response) => {
 
 
 app.get("/RTR_Line", (request, response) => {
+    console.log('Recording started from the controller layer');
+    console.log('Language code seleted :',request.query.search);
+    var language_code=String(request.query.search);
     Device_Index_Util("Line 1 (Virtual Audio Cable)", (error, result) => {
         if (error) {
             return response.send('Error ' + error);
@@ -166,18 +178,18 @@ app.get("/RTR_Line", (request, response) => {
             if (error_1) {
                 return response.send(error_1);
             }
-            logger.info('File created from the recorder function is: ' + result_1)
+            console.log('File created from the recorder function is: ' + result_1)
             // return response.send(result_1);
-            transcript_service(result_1, (error_2, result_2) => {
+            transcript_service(result_1,language_code, (error_2, result_2) => {
                 if (error_2) {
                     return response.send('Error ' + error_2);
                 }
-                logger.info('Json response from the transcript function: ' + result_2)
+                console.log('Json response from the transcript function: ' + result_2)
                 response.send(result_2);
-                if (request.query.search) {
-                    console.log("final _email",request.query.search)
-                    mailing_proto(request.query.search,result_2);
-                }
+                // if (request.query.search) {
+                //     console.log("final _email",request.query.search)
+                //     mailing_proto(request.query.search,result_2);
+                // }
             });
 
         });

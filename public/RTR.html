@@ -46,11 +46,14 @@
 						
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
+                         
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="index.html" class="active">Home</a></li>
-							<li class="scroll-to-section"><a href="index.html#our-classes">Our Services</a></li>               
+							<li class="scroll-to-section"><a href="index.html#our-classes">Our Services</a></li>
+							<li class="scroll-to-section"><a href="index.html#call-to-action">Why GRC?</a></li>
+							<li class="scroll-to-section"><a href="index.html#tutorial">Tutorial</a></li>
                             <li class="main-button"><a href="index.html#our-classes">Try Now</a></li>
-                        </ul>        
+                        </ul>						
                     
                         <!-- ***** Menu End ***** -->
                     </nav>
@@ -59,38 +62,16 @@
         </div>
     </header>
 	
-    <section class="section" id="schedule">
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-6 offset-lg-3">
-                  <div class="section-heading dark-bg">
-                      <h2>Refer to your   <em>transcripts</em> whenever you want</h2>
-                      <img src="assets/images/line-dec.png" alt="">
-                      <br>
-          <Form>
-        <Input type="url" id="mail_id" name="TextBox" placeholder = "Enter your mail id"><br><br>
-        
-          <div class="main-button"> <a ONCLICK="mailsubs();" id="paste_tran" >Mail now</a></form> 
-               
-              </div>
-          </div>
-    
-          
-  </section>
+    <!-- ***** Header Area End ***** -->
 
-	 <!-- ***** Our Services ***** -->
-     <div class="main-banner" id="top">
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="main-banner" id="top">
     <section class="section" id="our-classes">
         <div class="container">
             <div class="row">
-		
                 <div class="col-lg-6 offset-lg-3">
-				
-					
                     <div class="section-heading">
-			
-                        <br><h2>What is <em>Your Choice</em> of Recording ?</h2>
-						 
+                        <h2>What is <em>Your Choice</em> of Recording ?</h2>
                     </div>
                 </div>
             </div>
@@ -98,7 +79,7 @@
 
 			
 						<!-- right side start -->
-			 
+			
 			
 			 <div class="row" id="tabs">
               <div class="col-lg-8">
@@ -110,7 +91,30 @@
 						Majorly used for apps like Youtube, Amazon Music, Reeso  and so on!
 						
 							<div class="main-button">
-                        <br><br><a id="submit_system_sound">TRANSCRIPT OUTPUT SOUND</a>
+							<br><b><label for="language">Select Audio Language:</label></b>
+  <select name="language" id="language_sys">
+    <option value="en-US">English (United States)</option>
+    <option value="en-GB">English (United Kingdom)</option>
+    <option value="en-AU">English (Australia)</option>
+    <option value="en-IE">English (Ireland) </option>
+    <option value="en-IN">English (India) </option>
+    <option value="en-ZA">English (South Africa) </option>
+    <option value="ru-RU">Russian (Russian Federation) </option>
+    <option value="fr-CA">French (Canada) </option>
+    <option value="fr-FR">French (France)  </option>
+    <option value="de-DE">German (Germany) </option>
+    <option value="it-IT">Italian (Italy)  </option>
+    <option value="nl-NL">Dutch (Netherlands)  </option>
+    <option value="ja-JP">Japanese (Japan) </option>
+    <option value="es-US">Spanish (United States) </option>
+    <option value="es-ES">Spanish (Spain)  </option>
+    <option value="ar-SA">Arabic (Saudi Arabia)  </option>
+    <option value="hi-IN">Hindi (India) </option>
+    <option value="pt-BR">Portuguese (Brazil) </option>
+    <option value="pt-PT">Portuguese (Portugal) </option>
+    <option value="fa-IR">Persian (Iran)  </option>
+  </select>
+                        <br><a id="submit_system_sound">TRANSCRIPT OUTPUT SOUND</a>
 						</article>
                         </section>
               </div>
@@ -140,7 +144,30 @@
 						Mainly used in creating To-Do List, Document generation and even for getting insights on your proficiency.
 						
 							<div class="main-button">
-                        <br><br><a  id="submit_mic">TRANSCRIPT INPUT SOUND</a>
+							<br><b><label for="language">Select Audio Language:</label></b>
+  <select name="language" id="language_mic">
+    <option value="en-US">English (United States)</option>
+    <option value="en-GB">English (United Kingdom)</option>
+    <option value="en-AU">English (Australia)</option>
+    <option value="en-IE">English (Ireland) </option>
+    <option value="en-IN">English (India) </option>
+    <option value="en-ZA">English (South Africa) </option>
+    <option value="ru-RU">Russian (Russian Federation) </option>
+    <option value="fr-CA">French (Canada) </option>
+    <option value="fr-FR">French (France)  </option>
+    <option value="de-DE">German (Germany) </option>
+    <option value="it-IT">Italian (Italy)  </option>
+    <option value="nl-NL">Dutch (Netherlands)  </option>
+    <option value="ja-JP">Japanese (Japan) </option>
+    <option value="es-US">Spanish (United States) </option>
+    <option value="es-ES">Spanish (Spain)  </option>
+    <option value="ar-SA">Arabic (Saudi Arabia)  </option>
+    <option value="hi-IN">Hindi (India) </option>
+    <option value="pt-BR">Portuguese (Brazil) </option>
+    <option value="pt-PT">Portuguese (Portugal) </option>
+    <option value="fa-IR">Persian (Iran)  </option>
+  </select>
+                        <br><a  id="submit_mic">TRANSCRIPT INPUT SOUND</a>
 				
                     </div>
 						</article>
@@ -159,12 +186,38 @@
 				<section class='tabs-content'>
 						<article id='tabs-4'><br><br><br>
 						
-						<br><br>Capture <b>  EVERY SOUND</b> from and into your system. The most used feature of all.<br><br><a href='#tabs-4'><img src="assets/images/zoom.png" alt=""></a> <img src="assets/images/meet.jpg" alt=""></a> <img src="assets/images/teams.jpg" alt=""></a>
+						<br>Capture <b>  EVERY SOUND</b> from and into your system. The most used feature of all.<br><br><a href='#tabs-4'><img src="assets/images/zoom.png" alt=""></a> <img src="assets/images/meet.jpg" alt=""></a> <img src="assets/images/teams.jpg" alt=""></a>
 
 						Mostly used during meetings, calls and much more !
 						
 						<div class="main-button">
-                        <br><br><a  id="submit_both_sound">TRANSCRIPT COMPLETE SYSTEM SOUND</a>
+						  <br><b><label for="language">Select Audio Language:</label></b>
+  <select name="language" id="language_both">
+    <option value="en-US">English (United States)</option>
+    <option value="en-GB">English (United Kingdom)</option>
+    <option value="en-AU">English (Australia)</option>
+    <option value="en-IE">English (Ireland) </option>
+    <option value="en-IN">English (India) </option>
+    <option value="en-ZA">English (South Africa) </option>
+    <option value="ru-RU">Russian (Russian Federation) </option>
+    <option value="fr-CA">French (Canada) </option>
+    <option value="fr-FR">French (France)  </option>
+    <option value="de-DE">German (Germany) </option>
+    <option value="it-IT">Italian (Italy)  </option>
+    <option value="nl-NL">Dutch (Netherlands)  </option>
+    <option value="ja-JP">Japanese (Japan) </option>
+    <option value="es-US">Spanish (United States) </option>
+    <option value="es-ES">Spanish (Spain)  </option>
+    <option value="ar-SA">Arabic (Saudi Arabia)  </option>
+    <option value="hi-IN">Hindi (India) </option>
+    <option value="pt-BR">Portuguese (Brazil) </option>
+    <option value="pt-PT">Portuguese (Portugal) </option>
+    <option value="fa-IR">Persian (Iran)  </option>
+  </select>
+
+  
+
+                        <br><a  id="submit_both_sound">TRANSCRIPT COMPLETE SYSTEM SOUND</a>
 				
                     </div>
 						</article>
@@ -198,6 +251,29 @@
 						<b>2)</b>  Change the output of your application choice to Line-1 in App volume and device preferences.<br><br>
 						<img src="assets/images/Screenshot.png" alt=""></a>
 						<div class="main-button">
+						<br><b><label for="language">Select Audio Language:</label></b>
+  <select name="language" id="language_line">
+    <option value="en-US">English (United States)</option>
+    <option value="en-GB">English (United Kingdom)</option>
+    <option value="en-AU">English (Australia)</option>
+    <option value="en-IE">English (Ireland) </option>
+    <option value="en-IN">English (India) </option>
+    <option value="en-ZA">English (South Africa) </option>
+    <option value="ru-RU">Russian (Russian Federation) </option>
+    <option value="fr-CA">French (Canada) </option>
+    <option value="fr-FR">French (France)  </option>
+    <option value="de-DE">German (Germany) </option>
+    <option value="it-IT">Italian (Italy)  </option>
+    <option value="nl-NL">Dutch (Netherlands)  </option>
+    <option value="ja-JP">Japanese (Japan) </option>
+    <option value="es-US">Spanish (United States) </option>
+    <option value="es-ES">Spanish (Spain)  </option>
+    <option value="ar-SA">Arabic (Saudi Arabia)  </option>
+    <option value="hi-IN">Hindi (India) </option>
+    <option value="pt-BR">Portuguese (Brazil) </option>
+    <option value="pt-PT">Portuguese (Portugal) </option>
+    <option value="fa-IR">Persian (Iran)  </option>
+  </select>
                         <br><a   id="submit_ind_app">TRANSCRIPT SPECIFIC APPLICATION SOUND</a>
 				
                     </div>
@@ -209,21 +285,16 @@
 			<!-- left side end -->
 		</div>
 	</section>
-    <!-- ***** Our Services End ***** -->
-    
+       
+   
+        
 
-   
-   
-
-    <!-- ***** Why GRC? Starts ***** -->
-  
-	 <!-- ***** Our Classes End ***** -->
+        
     
-   
-	
+ 
 
     <!-- jQuery -->
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/jquery-2.1.0.min.js"></script>
 
     <!-- Bootstrap -->
     <script src="assets/js/popper.js"></script>

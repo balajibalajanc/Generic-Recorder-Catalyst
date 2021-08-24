@@ -6,18 +6,42 @@ const get_conversation=require('./Getting_conversation_message_service');
 // const duration_service=require('./duration_service');
 
 // fucntion to authenticate and upload the audio file to the server
-function job_status(AUTH_TOKEN,JOB_ID){
 
-          request.get({
-                        url: `https://api.symbl.ai/v1/job/${JOB_ID}`,
-                        headers: { 'Authorization': `Bearer ${AUTH_TOKEN}` },
-                        json: true
-                       }, (err, response, body) => {
-            console.log("Job_status_",JSON.parse(body));
+
+const auth_upld=(file_name,lc,callback)=>{
+
+  function job_status(AUTH_TOKEN,JOB_ID,conversationId){
+
+    request.get({
+      url: `https://api.symbl.ai/v1/job/${JOB_ID}`,
+      headers: { 'Authorization': `Bearer ${AUTH_TOKEN}` },
+      json: true
+     }, (err, response, body) => {
+console.log("Job_status ",body.status);
+
+if (body.status==='completed')
+{
+console.log("Job Status Completed in getting the conversationa");
+console.log("Started the metrice analysis phase");
+
+get_conversation(conversationId,AUTH_TOKEN,(error,result)=>{
+  if(error) {
+    return callback(error,undefined);
+  }
+  
+    //  const objectValue = JSON.parse(result);
+    //  console.log(objectValue.url);
+  return callback(undefined,result);
+})
+}
+
+else{
+job_status(AUTH_TOKEN,JOB_ID,conversationId)
+}
 });
 }
 
-const auth_upld=(file_name,callback)=>{
+
                 const authOptions = {
                   method: 'post',
                   url: "https://api.symbl.ai/oauth2/token:generate",
@@ -61,7 +85,7 @@ request(authOptions, (err, res, body) => {
       // 'channelMetadata': [{"channel": 1, "speaker": {"name": "Robert Bartheon", "email": "robertbartheon@gmail.com"}}],
       // ["<Optional, boolean| channel_metadata> |This object parameter contains two variables speaker and channel to specific which speaker corresponds to which channel. This object only works when enableSeparateRecognitionPerChannel query param is set to true."
     
-      'languageCode': "en-IN"  // <Optional, boolean| language_code> |code of language of recording.
+      'languageCode': lc  // <Optional, boolean| language_code> |code of language of recording.
     }
     const audioOption = {
       url: 'https://api.symbl.ai/v1/process/audio',
@@ -91,20 +115,9 @@ request(authOptions, (err, res, body) => {
       console.log('Body', body);
       var {conversationId} = body
       var {jobId}=body
-      //job_status(accessToken,jobId);
+      job_status(accessToken,jobId,conversationId);
 
-      
-        setTimeout(() => {
-          get_conversation(conversationId,accessToken,(error,result)=>{
-            if(error) {
-              return callback(error,undefined);
-            }
-            
-              //  const objectValue = JSON.parse(result);
-              //  console.log(objectValue.url);
-            return callback(undefined,result);
-          })
-        }, 5*1000);
+        
       
       // get_conversation(conversationId,accessToken,(error,result)=>{
       //   if(error) {
