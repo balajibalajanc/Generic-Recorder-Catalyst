@@ -238,24 +238,6 @@ function geturl()
 
 
 
-function mailsubs()
-{
-	const mail_id = document.getElementById("mail_id").value;
-	common_id=mail_id
-	console.log(common_id);
-	document.getElementById("paste_tran").innerHTML = "Mail sent!";
-	setTimeout(() => {
-		document.getElementById("paste_tran").innerHTML = "Mail now";
-	}, 2000);
-	// fetch('/paste_url?search='+encodeURIComponent(url)).then((response)=>{
-	// 	response.json().then((data)=>{
-	// 		console.log(data.url);
-	// 		window.location.href = data.url;
-	// })
-	// 		console.log("success client js",response)
-	// })
-}
-
 	 
 	 function func3() 
                 {
@@ -330,6 +312,11 @@ function mailsubs()
 					console.log("Stop");
 				 }
 	
+					
+				 
+				 
+				 
+			
 
 				 
 // function click_summany_tab_1(){

@@ -106,8 +106,8 @@ request(authOptions, (err, res, body) => {
     }
     
     audioFileStream.pipe(request.post(audioOption, (err, response, body) => {
+      console.log("File sent for processing ")
       const statusCode = response.statusCode;
-      console.log('Status code: ', statusCode); 
       if (err || Object.keys(responses).indexOf(statusCode.toString()) !== -1) {
         throw new Error(responses[statusCode]);
       }

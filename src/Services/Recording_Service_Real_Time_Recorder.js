@@ -13,12 +13,11 @@ const Recorder_service_rtr=(index,device,callback)=>{
       scriptPath:LOCATION,
         args:[index,device]
     }
-    console.log("tester",index);
     PythonShell.run('Recorder_Real_Time_Recorder.py', options, function (err, result){
         if (err) callback(err,undefined) ;
         // result is an array consisting of messages collected 
         //during execution of script.
-        console.log("inside_service",result[0]);
+        console.log("File Name: ",result[0]);
         callback(undefined,result[0]);
   });
 };

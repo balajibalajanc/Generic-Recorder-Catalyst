@@ -1,5 +1,6 @@
 const {PythonShell} =require('python-shell');
 const path=require('path');
+const { Console } = require('console');
 const public_dir_path=path.join(__dirname,'../Utilities');
 const regex = /\\/g;
 const FilePath = public_dir_path.replace(regex, "\\\\");
@@ -19,7 +20,7 @@ let options={ mode: 'text',
       args:[second]
     }
 
-
+console.log("Into the system sound Device getter")
     PythonShell.run('Device_Index.py', options, function (err, result){
         if (err) throw err;
         // result is an array consisting of messages collected 

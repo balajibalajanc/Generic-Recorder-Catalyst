@@ -37,6 +37,7 @@ request.get({
         result=body.messages.map(function(value) {
             return value.text
         })
+        console.log("Getting the summary phase");
         final_object.messages_array=result
         final_object.messages = result.join(' ');
     }
@@ -55,9 +56,10 @@ request.get({
                 return i.text
             })
             final_object.actionItems = result.join(' ');
+            console.log("Getting the Action_item phase");
         }
 
-        //action_item
+        //follow up
         request.get({
             url: url_followUps,
             headers: {
@@ -70,9 +72,10 @@ request.get({
                     return i.text
                 })
                 final_object.followUps = result.join(' ');
+                console.log("Getting the follow_up phase");
             }
 
-            //action_item
+            //topics
             request.get({
                 url: url_topics,
                 headers: {
@@ -84,10 +87,11 @@ request.get({
                     result = body.topics.map(function(i) {
                         return i.text
                     })
-                    final_object.topics = result.join(' ');
+                    final_object.topics = result.join(' , ');
+                    console.log("Getting the Topics phase");
                 }
 
-                //action_item
+                //questions
                 request.get({
                     url: url_questions,
                     headers: {
@@ -100,6 +104,7 @@ request.get({
                             return i.text
                         })
                         final_object.questions = result.join(' ');
+                        console.log("Getting the questions phase");
                     }
 
                     request.get({
@@ -115,6 +120,7 @@ request.get({
                                 return value.sentiment.suggested
                             })
                             final_object.sent_a=sent
+                            console.log("Getting the Sentiments for the conversations");
                             
                         }
 
@@ -141,7 +147,7 @@ request.get({
                                 m_talktime.push(i.talkTime.percentage);
                                 m_listentime.push(i.listenTime.percentage)
                             })
-                            
+                            console.log("Getting the Track analysis  for the conversations");
                             final_object.member_track_analysis={m_pace:m_pace,m_talktime:m_talktime,m_listentime:m_listentime}
                             final_object.analytics={x_met: x_met, y_met: y_met}
                             

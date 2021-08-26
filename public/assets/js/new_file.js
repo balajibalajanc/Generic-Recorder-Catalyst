@@ -47,6 +47,79 @@ function click_summany_sent_tab_2(){
  }
 
 
+ function mailsubs()
+{
+	var mailid = document.getElementById("mail_id").value;	
+	var mailmsg = document.getElementById("mail_msg").value;
+	console.log(mailmsg);
+  console.log(mailid);
+
+  $.ajax( {
+    type:"GET",
+    url:'/mail_send?id='+encodeURIComponent(mailid)+'&subject='+encodeURIComponent(mailmsg)+'&msg='+encodeURIComponent(temp_obj.url),
+    dataType:"json",
+    beforeSend:function(){
+      // $('#js-preloader').addClass('unloaded');
+    } ,
+    success:function(result) {
+      // var out_click="";
+      //  out=result.data
+      //  val=out.translations
+      //   console.log(val[0].translatedText);
+
+      //   out_click+=`<ul>
+      //   <li>
+      //  <a class="col-lg-auto"> ${val[0].translatedText}</a> 
+      // </li>
+      // </ul>`;
+
+      // $('#Translation_space').html(out_click);
+        
+    }
+   });
+	
+}
+
+function briefsubs(){
+window.location.href=temp_obj.url;
+}
+
+
+
+function trans_lang(){
+  var language_trans = document.querySelector("#language_trans");
+				output = language_trans.value;
+				console.log(output);
+        console.log(temp_obj.messages);
+
+        $.ajax( {
+					type:"GET",
+					url:'/trans?search='+encodeURIComponent(output)+'&msg='+encodeURIComponent(temp_obj.messages),
+					dataType:"json",
+					beforeSend:function(){
+						// $('#js-preloader').addClass('unloaded');
+					} ,
+					success:function(result) {
+            var out_click="";
+             out=result.data
+             val=out.translations
+            	console.log(val[0].translatedText);
+
+              out_click+=`<ul>
+              <li>
+             <a class="col-lg-auto"> ${val[0].translatedText}</a> 
+            </li>
+            </ul>`;
+     
+            $('#Translation_space').html(out_click);
+              
+					}
+				 });
+
+
+}
+
+
 function chart(){
 
  var xValues = temp_obj.analytics.x_met;

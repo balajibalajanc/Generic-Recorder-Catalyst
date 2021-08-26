@@ -17,8 +17,10 @@ const Device_Index_Util_both = require('../Services/Device_Index_both');
 const recorder_both = require('../Services/Recording_Service_Real_Time_Both');
 const transcript_service_file = require('../Services/Transcripting_Uploaded_File');
 const mailing_proto=require('../Services/Mailing_Service');
+const trans=require('../Services/get_translation_service');
 app.use(express.static(public_dir_path))
-const logger = require('loglevel')
+const logger = require('loglevel');
+const { request } = require('https');
 //root hosting
 app.get('/', (req, res) => {
     res.render('index', {
@@ -64,20 +66,20 @@ app.post('/uploadSound', upload.single('avatar'), function(req, response, next) 
 //record system sound
 app.get("/RTR", (request, response) => {
     console.log('Recording started from the controller layer');
-    console.log('Language code seleted :',request.query.search);
+    console.log('Language code selected for recording :',request.query.search);
     var language_code=String(request.query.search);
     try {
         Device_Index_Util("Stereo", (error, result) => {
             if (error) {
                 return  response.send('Error ' + error);
             }
-            console.log('Index for the stereo device is : ' + result)
+            console.log('Index for the stereo device and the id is : ' + result)
             Recorder_rtr(result,"System_sound", (error_1, result_1) => {
                 if (error_1) {
                     return response.send(error_1);
                 }
 
-                console.log('File created from the recorder function is: ' + result_1)
+                console.log('File successfully created from the recorder function is: ' + result_1)
                 // return response.send(result_1);
                 transcript_service(result_1,language_code, (error_2, result_2) => {
                     if (error_2) {
@@ -217,6 +219,31 @@ app.get("/paste_url", (req, response) => {
     })
 })
 
+
+app.get("/trans",(request,response) => {
+
+    console.log("messages",request.query.msg);
+    console.log(request.query.search);
+    trans(request.query.msg,request.query.search,(error,result)=>{
+        if(error) {console.log(error)}
+        console.log(result);
+        response.send(result);
+    })
+
+})
+
+app.get("/mail_send",(request,response) => {
+
+    console.log("messages",request.query.msg);
+    console.log(request.query.id);
+    console.log(request.query.subject);
+    mailing_proto(request.query.id,request.query.subject,request.query.msg,(error,result)=>{
+        if(error) {console.log(error)}
+        console.log("Message Sent Successfully");
+
+    })
+
+})
 
 
 
