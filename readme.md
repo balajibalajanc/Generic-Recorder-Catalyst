@@ -125,10 +125,10 @@ your preferred browser.
 
    [Get Calendar View]: <https://docs.microsoft.com/en-us/graph/tutorials/nodehttps://docs.microsoft.com/en-us/graph/tutorials/node>
    
-   [Plsymbl]: <>
-   [Plsendgrid]:<>
-   [Plvac]:<>
-   [PlGT]:<>
+   [Plsymbl]: <https://github.com/balajibalajanc/Generic-Recorder-Catalyst/tree/master/plugins/symbl>
+   [Plsendgrid]:<https://github.com/balajibalajanc/Generic-Recorder-Catalyst/tree/master/plugins/sendgrid>
+   [Plvac]:<https://github.com/balajibalajanc/Generic-Recorder-Catalyst/tree/master/plugins/vac>
+   [PlGT]:<https://github.com/balajibalajanc/Generic-Recorder-Catalyst/tree/master/plugins/GT>
    [Symbl Async]: <https://symbl.ai/>
    [Microsoft Graph]: <https://developer.microsoft.com/en-us/graph/graph-explorer>
    [Google translate]: <https://cloud.google.com/translate>
