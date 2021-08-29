@@ -39,7 +39,7 @@ class App():
         self.p = pyaudio.PyAudio()  
         self.stream = self.p.open(format=self.sample_format,channels=self.channels,rate=self.fs,frames_per_buffer=self.chunk,input=True,input_device_index=self.DEVICE_INDEX)
         self.stream_s = self.p.open(format=self.sample_format,channels=self.channels,rate=self.fs,frames_per_buffer=self.chunk,input=True,input_device_index=self.DEVICE_INDEX_s)
-        self.label['text']="Recording from both input and output device"
+        self.label['text']="Recording both System sound and Microphone"
         self.button1['state']='disabled'
         self.button2['state']='normal'
         self.isrecording = True

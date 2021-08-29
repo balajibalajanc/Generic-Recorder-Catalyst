@@ -4,12 +4,21 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-GRC is a desktop runtime implemented in Nodejs and Python that allows individual users to record system sound, regardless of the programme, and feed it into the Symbl Async API to obtain valuable information like transcripts, tasks, and inquiries.
+- GRC is a desktop runtime prototype implemented in Nodejs and Python that allows individual users to record the content they want to transcript as per their customizations.
+
+- The customizations include :
+        - Recording only the sound that is emitted from the system.
+        - Recording only the sound that is captured via a microphone.
+        - Recording the entire system sound that is both emitted and captured.
+        - The user may record and transcribe the audio from an independent application using a Virtual Audio Cable. (For example, the user can watch a video on YouTube while he/she can record a Microsoft meeting in the background.)
+
+- Another great feature is the future recorder. Using this feature, you can view meeting data (timings) of your calendars (like GoogleMeet, Microsoft Calendar) and schedule recordings to transcript future meetings.
+
 
 ##### Objective
 The main objective of our applications is to:
-- ✨You can gain insights from any application through system sound, input sound, or both, regardless of what application it is.✨
--✨You will always gain insight from meetings that you are unable to attend due to your busy schedule.✨
+- ✨You can gain insights from any application through system sound, input sound, or both  and individual application sound, regardless of what application it is.✨
+- ✨You will always gain insight from meetings that you are unable to attend due to your busy schedule.✨
 
 ## Features
 
@@ -24,16 +33,19 @@ The main objective of our applications is to:
 
 
 
-## Tech
-
-GRC uses a number of open source projects to work properly:
+## Tech Stack
 
 - [Python] - Recorder Functionalty!
 - [node.js] - evented I/O for the backend
 - [Express] - for local server app framework 
 - [VAC] - an audio cable to route the application sound
 
-And of course GRC itself is open source with a [public repository][grc]  on GitHub.
+## APIs
+
+- [Sendgrid] - Recorder Functionalty!
+- [Google translate] - evented I/O for the backend
+- [Microsoft Graph] - for local server app framework 
+- [Symbl Async] - an audio cable to route the application sound
 
 ## Installation & Local Server Setup
 
@@ -59,6 +71,11 @@ cd (To your local repo)
 npm install 
 ```
 
+5.(Beta Version => under construction) Deploy the Calendar service from the below tutorial and makeu sure to host the application in the local host :3000
+
+[Get Calendar View]
+
+
 ## Plugins
 
 GRC is currently extended with the following plugins.
@@ -66,14 +83,20 @@ Instructions on how to use them in your own application are linked below.
 
 | Plugin | README |
 | ------ | ------ |
-| Symbl | [plugins/dropbox/README.md][PlDb] |
-| Sendgrid | [plugins/github/README.md][PlGh] |
-| VAC | [plugins/googledrive/README.md][PlGd] |
+| Symbl | [plugins/symbl/README.md][Plsymbl] |
+| Sendgrid | [plugins/sendgrid/README.md][Plsendgrid] |
+| VAC | [plugins/vac/README.md][Plvac] |
+| Google Translate| [plugins/GT/README.md][PlGT] |
 
 
 ## Deployment
 
-Start the project
+Start the project:
+
+Activate the Virtual environment by changing the directory into the \{Environment Name of the virtualenv}\Scripts\
+```sh
+.\activate.bat
+```
 
 ```sh
 npm run dev
@@ -100,9 +123,13 @@ your preferred browser.
    [Python]: <https://www.python.org/downloads/>
    [VAC]: <https://vac.muzychenko.net/en/>
 
-   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
-   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
-   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
-   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
-   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
-   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
+   [Get Calendar View]: <https://docs.microsoft.com/en-us/graph/tutorials/nodehttps://docs.microsoft.com/en-us/graph/tutorials/node>
+   
+   [Plsymbl]: <>
+   [Plsendgrid]:<>
+   [Plvac]:<>
+   [PlGT]:<>
+   [Symbl Async]: <https://symbl.ai/>
+   [Microsoft Graph]: <https://developer.microsoft.com/en-us/graph/graph-explorer>
+   [Google translate]: <https://cloud.google.com/translate>
+   [Sendgrid]: <https://sendgrid.com/>

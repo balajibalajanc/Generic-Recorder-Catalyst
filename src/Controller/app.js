@@ -5,8 +5,8 @@ const app = express()
 const port = process.env.PORT || 3001
 
 const path = require('path');
-const cron = require('node-cron');
 const multer = require('multer')
+var logger = require('morgan');
 //services defined
 const public_dir_path = path.join(__dirname, '../../public');
 const Device_Index_Util = require('../Services/Device_Index_Service');
@@ -18,9 +18,8 @@ const recorder_both = require('../Services/Recording_Service_Real_Time_Both');
 const transcript_service_file = require('../Services/Transcripting_Uploaded_File');
 const mailing_proto=require('../Services/Mailing_Service');
 const trans=require('../Services/get_translation_service');
+app.use(logger('dev'));
 app.use(express.static(public_dir_path))
-const logger = require('loglevel');
-const { request } = require('https');
 //root hosting
 app.get('/', (req, res) => {
     res.render('index', {
@@ -50,6 +49,7 @@ const upload = multer({
 app.post('/uploadSound', upload.single('avatar'), function(req, response, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
+    console.log('Recording started from the controller layer');
     console.log("Requested file name ",req.file.originalname);
     transcript_service_file(req.file.originalname, (error_t, result_t) => {
         if (error_t) {
@@ -67,14 +67,15 @@ app.post('/uploadSound', upload.single('avatar'), function(req, response, next) 
 app.get("/RTR", (request, response) => {
     console.log('Recording started from the controller layer');
     console.log('Language code selected for recording :',request.query.search);
-    var language_code=String(request.query.search);
     try {
+    var language_code=String(request.query.search);
+    
         Device_Index_Util("Stereo", (error, result) => {
             if (error) {
                 return  response.send('Error ' + error);
             }
             console.log('Index for the stereo device and the id is : ' + result)
-            Recorder_rtr(result,"System_sound", (error_1, result_1) => {
+            Recorder_rtr(result,"System sound", (error_1, result_1) => {
                 if (error_1) {
                     return response.send(error_1);
                 }
@@ -87,16 +88,12 @@ app.get("/RTR", (request, response) => {
                     }
                     console.log('Json response from the transcript function: ' + result_2)
                     response.send(result_2);
-                    // if (request.query.search) {
-                    //     console.log("final _email",request.query.search)
-                    //     mailing_proto(request.query.search,result_2);
-                    // }
                 });
 
             });
         });
     } catch (e) {
-        console.log(e)
+        console.log("Catched in the try/catch block with the error: ", e)
     }
 
 })
@@ -105,6 +102,7 @@ app.get("/RTR", (request, response) => {
 app.get("/RTR_mic", (request, response) => {
     console.log('Recording started from the controller layer');
     console.log('Language code seleted :',request.query.search);
+    try{
     var language_code=String(request.query.search);
     Device_Index_Util("External", (error, result) => {
         if (error) {
@@ -130,6 +128,9 @@ app.get("/RTR_mic", (request, response) => {
             });
         })
     })
+} catch (e) {
+    console.log("Catched in the try/catch block with the error: ", e)
+}
 
 })
 
@@ -137,6 +138,7 @@ app.get("/RTR_mic", (request, response) => {
 app.get("/RTR_both", (request, response) => {
     console.log('Recording started from the controller layer');
     console.log('Language code seleted :',request.query.search);
+    try {
     var language_code=String(request.query.search);
 
     Device_Index_Util_both((error, result) => {
@@ -162,20 +164,23 @@ app.get("/RTR_both", (request, response) => {
             });
         })
     })
-
+} catch (e) {
+    console.log("Catched in the try/catch block with the error: ", e)
+}
 })
 
 
 app.get("/RTR_Line", (request, response) => {
     console.log('Recording started from the controller layer');
     console.log('Language code seleted :',request.query.search);
+    try{
     var language_code=String(request.query.search);
     Device_Index_Util("Line 1 (Virtual Audio Cable)", (error, result) => {
         if (error) {
             return response.send('Error ' + error);
         }
         console.log('Index for the LineS device is : ' + result)
-        Recorder_rtr(result,"Independent Application", (error_1, result_1) => {
+        Recorder_rtr(result,"sound of Independent Application", (error_1, result_1) => {
 
             if (error_1) {
                 return response.send(error_1);
@@ -196,7 +201,9 @@ app.get("/RTR_Line", (request, response) => {
 
         });
     });
-
+} catch (e) {
+    console.log("Catched in the try/catch block with the error: ", e)
+}
 })
 
 //get the insights from the 
@@ -222,8 +229,8 @@ app.get("/paste_url", (req, response) => {
 
 app.get("/trans",(request,response) => {
 
-    console.log("messages",request.query.msg);
-    console.log(request.query.search);
+    console.log("Messages sent to translate : ",request.query.msg);
+    console.log("Language code selected to translate",request.query.search);
     trans(request.query.msg,request.query.search,(error,result)=>{
         if(error) {console.log(error)}
         console.log(result);
@@ -234,9 +241,9 @@ app.get("/trans",(request,response) => {
 
 app.get("/mail_send",(request,response) => {
 
-    console.log("messages",request.query.msg);
-    console.log(request.query.id);
-    console.log(request.query.subject);
+    console.log("Messages sent to translate :",request.query.msg);
+    console.log("Email to send: ",request.query.id);
+    console.log("Subject to send: ",request.query.subject);
     mailing_proto(request.query.id,request.query.subject,request.query.msg,(error,result)=>{
         if(error) {console.log(error)}
         console.log("Message Sent Successfully");
@@ -250,7 +257,7 @@ app.get("/mail_send",(request,response) => {
 
 
 app.listen(port, () => {
-    console.log("Port is listening ")
+    console.log("Server started and the Port is listening ")
 });
 
 //   //record system sound only for 10 seconds

@@ -73,7 +73,7 @@ request(authOptions, (err, res, body) => {
       // 'customVocabulary': ['Platform', 'Discussion', 'Targets'],
       // <Optional, list| custom_vocabulary_list> |Contains a list of words and phrases that provide hints to the speech recognition task.
     
-      'confidenceThreshold': 0.6,
+      'confidenceThreshold': 0.5,
       // <Optional, double| confidence_threshold | Minimum required confidence for the insight to be recognized.>
     
       // 'detectPhrases': True,

@@ -32,7 +32,7 @@ class App():
     def startrecording(self):
         self.p = pyaudio.PyAudio()  
         self.stream = self.p.open(format=self.sample_format,channels=self.channels,rate=self.fs,frames_per_buffer=self.chunk,input=True,input_device_index=self.DEVICE_INDEX)
-        self.label['text']="Recording from "+str(sys.argv[2])
+        self.label['text']="Recording "+str(sys.argv[2])
         self.button1['state']='disabled'
         self.button2['state']='normal'
         self.isrecording = True
