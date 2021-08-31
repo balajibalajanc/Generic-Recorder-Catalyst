@@ -6,7 +6,6 @@ const port = process.env.PORT || 3001
 
 const path = require('path');
 const multer = require('multer')
-var logger = require('morgan');
 //services defined
 const public_dir_path = path.join(__dirname, '../../public');
 const Device_Index_Util = require('../Services/Device_Index_Service');
@@ -18,7 +17,7 @@ const recorder_both = require('../Services/Recording_Service_Real_Time_Both');
 const transcript_service_file = require('../Services/Transcripting_Uploaded_File');
 const mailing_proto=require('../Services/Mailing_Service');
 const trans=require('../Services/get_translation_service');
-app.use(logger('dev'));
+
 app.use(express.static(public_dir_path))
 //root hosting
 app.get('/', (req, res) => {
