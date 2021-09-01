@@ -123,7 +123,7 @@ your preferred browser.
    [Python]: <https://www.python.org/downloads/>
    [VAC]: <https://vac.muzychenko.net/en/>
 
-   [Get Calendar View]: <https://docs.microsoft.com/en-us/graph/tutorials/nodehttps://docs.microsoft.com/en-us/graph/tutorials/node>
+   [Get Calendar View]: <https://docs.microsoft.com/en-us/graph/tutorials/node?tutorial-step=1>
    
    [Plsymbl]: <https://github.com/balajibalajanc/Generic-Recorder-Catalyst/tree/master/plugins/symbl>
    [Plsendgrid]:<https://github.com/balajibalajanc/Generic-Recorder-Catalyst/tree/master/plugins/sendgrid>
