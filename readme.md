@@ -47,6 +47,10 @@ The main objective of our applications is to:
 - [Microsoft Graph] - for local server app framework 
 - [Symbl Async] - an audio cable to route the application sound
 
+## Architecture Diagram
+
+![Arch](https://user-images.githubusercontent.com/37975726/131716002-4c48232c-6b2d-44a6-8b1e-9dd559752d1b.JPG)
+
 ## Installation & Local Server Setup
 
 GRC requires [Node.js](https://nodejs.org/) v10+ and [Python] and lite version of [VAC] (which is completly free)  to run. So far compatabile only for Windows.
